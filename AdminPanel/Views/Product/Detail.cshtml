@@ -1,0 +1,53 @@
+﻿@model ProductCategoryVM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<main class="app-main">
+    <!--begin::App Content Header-->
+    <div class="app-content-header">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm-6"><h3 class="mb-0">Category Tables</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Category Tables</li>
+                    </ol>
+                </div>
+                <div class="mt-5">
+                    <label>Photo:</label>
+                    <h4><img src="~/@Model.Product.ProductPhoto"/></h4>
+                    <label>Name:</label>
+                    <h4>@Model.Product.Name</h4>
+                     <label>Description:</label>
+                    <h4>@Model.Product.Description</h4>
+                    <label>Count:</label>
+                    <h4>@Model.Product.Count</h4>
+                    <label>Price:</label>
+                    <h4>@Model.Product.Price</h4>
+                    <label>Sale Price:</label>
+                    <h4>@Model.Product.SalePrice</h4>
+                    <label>Discount:</label>
+                    <h4>@Model.Product.DisCount</h4>
+                    <label>Category:</label>
+                    <h4>@Model.Product.Category.Name</h4>
+                    <label>Create Date:</label>
+                    <h4>@Model.Product.CreateTime</h4>
+                    <label>Update Date:</label>
+                    <h4>@Model.Product.UpdateTime</h4>
+                    <a class="btn-danger" asp-controller="Product"asp-action="Index"><i class="fa-solid fa-backward"></i></a>
+
+                </div>
+
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+
+</main>
+
+

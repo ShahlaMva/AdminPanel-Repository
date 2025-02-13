@@ -1,0 +1,120 @@
+﻿@model ProductCategoryVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<main class="app-main">
+    <!--begin::App Content Header-->
+    <div class="app-content-header">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm-6"><h3 class="mb-0">Product Tables</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Product Tables</li>
+                    </ol>
+                </div>
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::App Content Header-->
+    <!--begin::App Content-->
+    <div class="app-content">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">Product</h3> <a class="btn btn-success" style="margin-left:10px;" asp-controller="Product" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Product Image</th>
+                                        <th>Name</th>
+                                         <th>Price</th>
+                                        <th>Sale Price</th>
+                                        <th>Description</th>
+                                        <th>Count</th>
+                                        <th>DisCount</th>
+                                        <th>Category</th>
+
+                                        <th>Create Time</th>
+                                        <th>Update Time</th>
+                                        <th>Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        var count = 1;
+                                    }
+
+                                    @foreach (var item in Model.Products)
+                                    {
+                                        <tr class="align-middle">
+                                            <td>@count</td>
+                                            <td><img style="width:100px" src="~/@item.ProductPhoto" alt="Alternate Text" /></td>
+                                            <td>@item.Name</td>
+                                           
+
+                                            <td>@item.Price</td>
+                                          <td>@item.SalePrice</td>
+                                            <td>@item.Description</td>                                        
+                                            <td>@item.Count </td>
+                                            <td>@item.DisCount</td>
+                                            <td>@Model.Categories.Where(c=>c.Id==item.CategoryId).FirstOrDefault().Name</td>
+                                            <td>@item.CreateTime</td>
+                                            <td>@item.UpdateTime</td>
+
+
+
+                                            <td>
+                                                <a class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+                                                <a class="btn btn-success" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
+
+
+                                            </td>
+                                        </tr>
+                                        count++;
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-end">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                    <!-- /.card -->
+                </div>
+
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::App Content-->
+</main>

@@ -1,0 +1,138 @@
+﻿@model Product
+
+<main class="app-main">
+    <!--begin::App Content Header-->
+    <div class="app-content-header">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm-12"><h3 class="mb-0">General Form</h3></div>
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Product</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Product</li>
+                    </ol>
+                </div>
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::App Content Header-->
+    <!--begin::App Content-->
+    <div class="app-content">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row g-4">
+                <!--begin::Col-->
+                <!--end::Col-->
+                <!--begin::Col-->
+                <div class="col-md-12">
+                    <!--begin::Quick Example-->
+                    <div class="card card-primary card-outline mb-4">
+                        <!--begin::Header-->
+                        <div class="card-header"><div class="card-title">Create Product</div></div>
+                        <!--end::Header-->
+                        <!--begin::Form-->
+                        <form asp-action="Create" method="post" enctype="multipart/form-data">
+                            <!--begin::Body-->
+                            <div class="card-body">
+                                <label for="validationCustom04" class="form-label">State</label>
+                               <select name="CategoryId"   class="form-select" id="validationCustom04" required>
+                                    @foreach (var category in ViewBag.Category)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                   
+                                </select>
+                                <div class="mb-3 mt-3">
+                                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                                    <input name="Name" asp-for="@Model.Name"
+                                           type="text"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" />
+                                    @*   <div id="emailHelp" class="form-text">
+                          We'll never share your email with anyone else.
+                        </div> *@
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Description</label>
+                                    <input name="Description" asp-for="@Model.Description"
+                                           type="text"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" />
+                                    @*   <div id="emailHelp" class="form-text">
+                          We'll never share your email with anyone else.
+                        </div> *@
+                                </div>
+                                <div class="mb-3">
+                                    <label for="count" class="form-label">Count</label>
+                                    <input name="Count" asp-for="@Model.Count"
+                                           type="number"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" />
+                                    @*   <div id="emailHelp" class="form-text">
+                          We'll never share your email with anyone else.
+                        </div> *@
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Sale Price</label>
+                                    <input name="SalePrice" asp-for="@Model.SalePrice"
+                                           type="number"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" />
+                                    @*   <div id="emailHelp" class="form-text">
+                          We'll never share your email with anyone else.
+                        </div> *@
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Price</label>
+                                    <input name="Price" asp-for="@Model.Price"
+                                           type="number"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" />
+                                    @*   <div id="emailHelp" class="form-text">
+                          We'll never share your email with anyone else.
+                        </div> *@
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Photo</label>
+                                    <input name="ProductImage" asp-for="@Model.ProductImage"
+                                           type="file"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp" />
+
+                                    @*   <div id="emailHelp" class="form-text">
+                          We'll never share your email with anyone else.
+                        </div> *@
+                        </div>
+                            <!--end::Body-->
+                            </div>
+                            <!--begin::Footer-->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                            <!--end::Footer-->
+                            
+
+                           
+                        </form>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Quick Example-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
