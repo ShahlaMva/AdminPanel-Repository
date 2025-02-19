@@ -1,9 +1,10 @@
 using AdminPanel.Db;
 using AdminPanel.Extensions;
+using AdminPanel.Models;
 using AdminPanel.Repositories;
-using AdminPanel.Repositories.CategoryRepo;
-using AdminPanel.Services.CategoryServ;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,17 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
     option.UseSqlServer(builder.Configuration.GetConnectionString("Default")),ServiceLifetime.Scoped);
 
+
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    opt.Password.RequiredLength = 8;
+    opt.Password.RequireDigit=true;
+
+    opt.User.RequireUniqueEmail = true;
+
+});
 
 builder.Services.AddApplicationService();
 
