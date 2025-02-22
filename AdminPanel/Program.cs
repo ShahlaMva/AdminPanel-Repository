@@ -1,5 +1,5 @@
 using AdminPanel.Db;
-using AdminPanel.Extensions;
+using AdminPanel.Helpers.Extensions;
 using AdminPanel.Models;
 using AdminPanel.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -47,6 +47,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -50,9 +50,14 @@
                 <p class="register-box-msg">Register a new membership</p>
                 <form  method="post">
                     <div class="input-group mb-3">
-                        <input asp-for="UserName" type="text" class="form-control" name="UserName"  placeholder="Name" />
+                        <input asp-for="UserName" type="text" class="form-control" name="UserName"  placeholder="User Name" />
                         <div class="input-group-text"><span class="bi bi-person"></span></div>
                         <span asp-validation-for="UserName"class="text-danger"></span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input asp-for="FullName" type="text" class="form-control" name="FullName" placeholder="Full Name" />
+                        <div class="input-group-text"><span class="bi bi-person"></span></div>
+                        <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                     <div class="input-group mb-3">
                         <input asp-for="Email" type="email" class="form-control"name="Email" placeholder="Email" />

@@ -1,15 +1,15 @@
-﻿namespace AdminPanel.Extensions
+﻿namespace AdminPanel.Helpers.Extensions
 {
     public static class PhotoExtension
     {
         public static bool IsPhoto(this IFormFile formFile)
         {
-            return (formFile.ContentType.StartsWith("image/"));
+            return formFile.ContentType.StartsWith("image/");
         }
 
         public static bool PhotoSize(this IFormFile formFile,int maxSize)
         {
-            return (formFile.Length / 1024 / 1024 )< maxSize;
+            return formFile.Length / 1024 / 1024 < maxSize;
         }
 
         public async static Task<string>CopyPhoto(this IFormFile formFile,string root,string folder)

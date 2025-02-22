@@ -5,7 +5,7 @@ using AdminPanel.Services.CategoryServ;
 using AdminPanel.Repositories.ProductRepo;
 using AdminPanel.Services.ProductServ;
 
-namespace AdminPanel.Extensions
+namespace AdminPanel.Helpers.Extensions
 {
     public static class ServiceExtensions
     {

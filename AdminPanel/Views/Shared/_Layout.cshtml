@@ -10,41 +10,41 @@
     <meta name="title" content="AdminLTE v4 | Dashboard" />
     <meta name="author" content="ColorlibHQ" />
     <meta name="description"
-          content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS." />
+    content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS." />
     <meta name="keywords"
-          content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard" />
+    content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard" />
     <!--end::Primary Meta Tags-->
     <!--begin::Fonts-->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/source-sans-3@5.0.12/index.css"
-          integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
-          crossorigin="anonymous" />
+    href="https://cdn.jsdelivr.net/npm/source-sans-3@5.0.12/index.css"
+    integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
+    crossorigin="anonymous" />
     <!--end::Fonts-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/styles/overlayscrollbars.min.css"
-          integrity="sha256-tZHrRjVqNSRyWg2wbppGnT833E/Ys0DHWGwT04GiqQg="
-          crossorigin="anonymous" />
+    href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/styles/overlayscrollbars.min.css"
+    integrity="sha256-tZHrRjVqNSRyWg2wbppGnT833E/Ys0DHWGwT04GiqQg="
+    crossorigin="anonymous" />
     <!--end::Third Party Plugin(OverlayScrollbars)-->
     <!--begin::Third Party Plugin(Bootstrap Icons)-->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-          integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI="
-          crossorigin="anonymous" />
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI="
+    crossorigin="anonymous" />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="~/css/adminlte.css" />
     <!--end::Required Plugin(AdminLTE)-->
     <!-- apexcharts -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-          integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-          crossorigin="anonymous" />
+    href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
+    integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
+    crossorigin="anonymous" />
     <!-- jsvectormap -->
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
-          integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
-          crossorigin="anonymous" />
+    href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
+    integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
+    crossorigin="anonymous" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -62,8 +62,8 @@
                             <i class="bi bi-list"></i>
                         </a>
                     </li>
-                    <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+                    <li class="nav-item d-none d-md-block"><a asp-controller="Account" asp-action="Register"class="nav-link">Register</a></li>
+                    <li class="nav-item d-none d-md-block"><a asp-controller="Account"asp-action="Login" class="nav-link">Login</a></li>
                 </ul>
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
@@ -86,7 +86,7 @@
                                 <!--begin::Message-->
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                       Register
+                                        Register
                                     </div>
                                     <div class="flex-grow-1">
                                         <h3 class="dropdown-item-title">
@@ -109,8 +109,8 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
                                         <img src="~/assets/img/user8-128x128.jpg"
-                                             alt="User Avatar"
-                                             class="img-size-50 rounded-circle me-3" />
+                                        alt="User Avatar"
+                                        class="img-size-50 rounded-circle me-3" />
                                     </div>
                                     <div class="flex-grow-1">
                                         <h3 class="dropdown-item-title">
@@ -133,8 +133,8 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
                                         <img src="~/assets/img/user3-128x128.jpg"
-                                             alt="User Avatar"
-                                             class="img-size-50 rounded-circle me-3" />
+                                        alt="User Avatar"
+                                        class="img-size-50 rounded-circle me-3" />
                                     </div>
                                     <div class="flex-grow-1">
                                         <h3 class="dropdown-item-title">
@@ -194,16 +194,24 @@
                     <!--end::Fullscreen Toggle-->
                     <!--begin::User Menu Dropdown-->
                     <li class="nav-item dropdown user-menu">
-                        <a asp-controller="Account" asp-action="Register" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                           
-                           Register
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
 
-                        </a>
-                        <a asp-controller="Account" asp-action="Login" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <span class="d-none d-md-inline">@User.Identity.Name</span>
 
-                            Login
-                        </a>
+                            </a>
 
+                        }
+                        else
+                        {
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+
+                                <span class="d-none d-md-inline">Account</span>
+
+                            </a>
+                            
+                        }
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                             <!--begin::User Image-->
                             <li class="user-header text-bg-primary">
@@ -284,6 +292,7 @@
                                 <li class="nav-item">
                                     <a asp-controller="Product"asp-action="Index" class="nav-link">
                                         <i class="nav-icon bi bi-circle"></i>
+                                        
                                         <p>Product</p>
                                     </a>
                                 </li>

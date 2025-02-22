@@ -1,4 +1,4 @@
-﻿using AdminPanel.Extensions;
+﻿using AdminPanel.Helpers.Extensions;
 using AdminPanel.Models;
 using AdminPanel.Services.CategoryServ;
 using AdminPanel.Services.ProductServ;
