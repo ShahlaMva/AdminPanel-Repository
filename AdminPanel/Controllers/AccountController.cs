@@ -1,8 +1,11 @@
 ﻿using AdminPanel.Helpers.Enum;
 using AdminPanel.Models;
 using AdminPanel.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdminPanel.Controllers
 {
@@ -87,28 +90,74 @@ namespace AdminPanel.Controllers
             
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public async Task<IActionResult> CreateRole()
-        {
-            foreach (var role in Enum.GetValues(typeof(Roles)))
-            {
-                if (!await _roleManager.RoleExistsAsync(role.ToString()))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole { Name = role.ToString() });
-                }
-            }
-            return Ok();
-           
-
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> CreateRole()
+        //{
+        //    foreach (var role in Enum.GetValues(typeof(Roles)))
+        //    {
+        //        if (!await _roleManager.RoleExistsAsync(role.ToString()))
+        //        {
+        //            await _roleManager.CreateAsync(new IdentityRole { Name = role.ToString() });
+        //        }
+        //    }
+        //    return Ok();
 
 
+        //}
 
 
+
+        [Authorize(Roles="SuperAdmin")]
         public async Task<IActionResult> Index()
         {
+            var users = _userManager.Users;
+            return View(users);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditAccount(string id)
+        {
+            if (id is null) return NotFound();
+            var register =await  _userManager.FindByIdAsync(id);
+            if (register == null) return NotFound();
+            var user = new RegisterVM
+            {   Id=register.Id,
+                UserName = register.UserName,
+                Email=register.Email
+            };
 
-            return View();
+            return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAccount(RegisterVM model)
+        {
+          
+            if (ModelState["UserName"].ValidationState==ModelValidationState.Invalid||
+                ModelState["Email"].ValidationState==ModelValidationState.Invalid) return View(model);
+            var user = await _userManager.FindByIdAsync(model.Id);
+
+            if (user is null) return NotFound();
+
+            user.UserName = model.UserName;
+            user.Email = model.Email;
+
+            var result =await _userManager.UpdateAsync(user);
+         
+            return RedirectToAction("Index","Account");
+        }
+
+        public async Task<IActionResult> ChangePass(RegisterVM userVm)
+        {
+            if (userVm is null) return NotFound();
+            var user = await _userManager.GetUserAsync(User);
+            if(user is null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, userVm.Password, userVm.ConfirmPassword);
+
+            return View("Index","Account");
         }
 
       

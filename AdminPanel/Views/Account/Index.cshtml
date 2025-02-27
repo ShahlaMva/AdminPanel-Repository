@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@model IEnumerable<AppUser>
     ViewData["Title"] = "Index";
 }
 
@@ -10,11 +9,11 @@
         <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-                <div class="col-sm-6"><h3 class="mb-0">Category Tables</h3></div>
+                <div class="col-sm-6"><h3 class="mb-0">User Tables</h3></div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Category Tables</li>
+                        <li class="breadcrumb-item active" aria-current="page">User Tables</li>
                     </ol>
                 </div>
             </div>
@@ -32,18 +31,18 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h3 class="card-title">Category</h3> <a class="btn btn-success" style="margin-left:10px;" asp-controller="Category" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
-                        </div>
+@*                             <h3 class="card-title">User</h3> <a class="btn btn-success" style="margin-left:10px;" asp-controller="Category" asp-action="Create"><i class="fa-solid fa-plus"></i></a>
+ *@                        </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Name</th>
-                                        <th>Create Time</th>
-                                        <th>Update Time</th>
-                                        <th>Operation</th>
+                                        <th>User Name</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,23 +51,22 @@
                                         var count = 1;
                                     }
 
-                                  @*   @foreach (var item in Model)
+                                    @foreach (var item in Model)
                                     {
                                         <tr class="align-middle">
                                             <td>@count</td>
-                                            <td>@item.Name</td>
+                                            <td>@item.UserName</td>
                                             <td>
-                                                @item.CreateTime
+                                                @item.FullName
                                             </td>
 
                                             <td>
-                                                @item.UpdateTime
+                                                @item.Email
                                             </td>
 
-
-
+                                           
                                             <td>
-                                                <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a class="btn btn-primary" asp-controller="Account" asp-action="EditAccount" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
                                                 <a class="btn btn-success" asp-controller="Category" asp-action="Detail" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
 
@@ -78,7 +76,7 @@
                                         count++;
                                     }
 
- *@
+
 
                                 </tbody>
                             </table>

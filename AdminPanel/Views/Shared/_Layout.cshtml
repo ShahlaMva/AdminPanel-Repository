@@ -62,8 +62,18 @@
                             <i class="bi bi-list"></i>
                         </a>
                     </li>
-                    <li class="nav-item d-none d-md-block"><a asp-controller="Account" asp-action="Register"class="nav-link">Register</a></li>
-                    <li class="nav-item d-none d-md-block"><a asp-controller="Account"asp-action="Login" class="nav-link">Login</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item d-none d-md-block"><a asp-controller="Account" asp-action="Logout" class="nav-link">Logout</a></li>
+
+                    }
+                    else
+                    {
+                        <li class="nav-item d-none d-md-block"><a asp-controller="Account" asp-action="Register" class="nav-link">Register</a></li>
+                        <li class="nav-item d-none d-md-block"><a asp-controller="Account" asp-action="Login" class="nav-link">Login</a></li>
+                        
+                    }
+                   
                 </ul>
                 <!--end::Start Navbar Links-->
                 <!--begin::End Navbar Links-->
@@ -297,9 +307,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
+                                    <a asp-controller="Account"asp-action="Index" class="nav-link">
                                         <i class="nav-icon bi bi-circle"></i>
-                                        <p>Dashboard v3</p>
+                                        <p>Users</p>
                                     </a>
                                 </li>
                             </ul>

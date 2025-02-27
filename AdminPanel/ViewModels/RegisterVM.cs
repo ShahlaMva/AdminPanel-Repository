@@ -4,6 +4,7 @@ namespace AdminPanel.ViewModels
 {
     public class RegisterVM
     {
+        public string? Id { get; set; }
         [Required(ErrorMessage ="Don't null!"),StringLength(15)]
         public string? UserName { get; set; }
         [Required(ErrorMessage = "Don't null!"), StringLength(20)]

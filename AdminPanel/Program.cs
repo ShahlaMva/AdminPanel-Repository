@@ -22,7 +22,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
     opt.Password.RequiredLength = 8;
     opt.Password.RequireDigit=true;
 
-    opt.User.RequireUniqueEmail = true;
+    opt.User.RequireUniqueEmail = false;
 
 });
 
