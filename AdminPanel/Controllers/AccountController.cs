@@ -122,7 +122,8 @@ namespace AdminPanel.Controllers
             var user = new RegisterVM
             {   Id=register.Id,
                 UserName = register.UserName,
-                Email=register.Email
+                Email=register.Email,
+                FullName=register.FullName
             };
 
             return View(user);
@@ -140,26 +141,57 @@ namespace AdminPanel.Controllers
 
             user.UserName = model.UserName;
             user.Email = model.Email;
+            user.FullName = model.FullName;
 
             var result =await _userManager.UpdateAsync(user);
          
-            return RedirectToAction("Index","Account");
+            return RedirectToAction("Index","Dashboard");
         }
-
-        public async Task<IActionResult> ChangePass(RegisterVM userVm)
+        [HttpGet]
+        public async Task<IActionResult> ChangePass(string id)
         {
-            if (userVm is null) return NotFound();
-            var user = await _userManager.GetUserAsync(User);
+            if (id is null) return NotFound();
+           
+            var user = await _userManager.FindByIdAsync(id);
             if(user is null)
             {
                 return Unauthorized();
             }
+            PasswordVM userVm = new PasswordVM
+            {
+                Id = user.Id,
+               
 
-            var result = await _userManager.ChangePasswordAsync(user, userVm.Password, userVm.ConfirmPassword);
+            };
 
-            return View("Index","Account");
+
+            return View(userVm);
         }
 
-      
+        [HttpPost]
+        public async Task<IActionResult> ChangePass(PasswordVM userVm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(userVm);
+            }
+            var user = await _userManager.FindByIdAsync(userVm.Id);
+            if (user is null) return NotFound();
+            var result = await _userManager.ChangePasswordAsync(user, userVm.OldPassword, userVm.Password);
+            
+       
+            return RedirectToAction("Index","Dashboard");
+           }
+       
+        public async Task<IActionResult> DeleteAccount(string id)
+        {
+            if (id is null) return NotFound();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user is null) return NotFound();
+            await _userManager.DeleteAsync(user);
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+
     }
 }

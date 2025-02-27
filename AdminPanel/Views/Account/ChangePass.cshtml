@@ -1,4 +1,4 @@
-﻿@model RegisterVM
+﻿@model PasswordVM
 @{
     ViewData["Title"] = "ChangePass";
 }
@@ -13,8 +13,8 @@
                 <div class="col-sm-12"><h3 class="mb-0">General Form</h3></div>
                 <div class="col-sm-12">
                     <ol class="breadcrumb float-sm-end">
-                        <li class="breadcrumb-item"><a href="#">Change Password</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Change</li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">Change Password</li>
                     </ol>
                 </div>
             </div>
@@ -32,22 +32,22 @@
                 <!--begin::Col-->
                 <!--end::Col-->
                 <!--begin::Col-->
+              
                 <div class="col-md-12">
                     <!--begin::Quick Example-->
                     <div class="card card-primary card-outline mb-4">
                         <!--begin::Header-->
-                        <div class="card-header"><div class="card-title">Edit User  <a class="btn btn-primary" href="#">Change Password</a></div></div>
+                        <div class="card-header"><div class="card-title">Edit User </div></div>
 
-                        <!--end::Header-->
-                        <!--begin::Form-->
+                      
                         <form asp-action="ChangePass" method="post">
-                            <input type="hidden" asp-for="@Model.Id" />
+                            <input type="hidden" asp-for="Id" />
                             <!--begin::Body-->
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Old Password</label>
-                                    <input asp-for="Password"
-                                           type="text"
+                                    <input asp-for="OldPassword"
+                                           type="password"
                                            class="form-control"
                                            id="exampleInputEmail1"
                                            aria-describedby="emailHelp" />
@@ -56,8 +56,8 @@
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">New Password</label>
-                                    <input asp-for="ConfirmPassword"
-                                           type="text"
+                                    <input asp-for="Password"
+                                           type="password"
                                            class="form-control"
                                            id="exampleInputEmail1"
                                            aria-describedby="emailHelp" />

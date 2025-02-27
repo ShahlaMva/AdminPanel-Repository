@@ -12,8 +12,10 @@ namespace AdminPanel.ViewModels
         public string? Email { get; set; }
         [Required(ErrorMessage = "Don't null!"), StringLength(100), DataType(DataType.Password)]
         public string? Password { get; set; }
+        public string? OldPassword { get; set; }
         [Required(ErrorMessage = "Don't null!"), StringLength(100), DataType(DataType.Password),Compare(nameof(Password),ErrorMessage="Password not correct!")]
         public string? ConfirmPassword { get; set; }
+
       
     }
 }
