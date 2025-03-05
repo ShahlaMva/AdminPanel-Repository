@@ -53,6 +53,24 @@
 
                                     @foreach (var item in Model)
                                     {
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure deleted?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <tr class="align-middle">
                                             <td>@count</td>
                                             <td>@item.Name</td>
@@ -68,17 +86,18 @@
                                            
                                                 <td>
                                                     <a class="btn btn-primary" asp-controller="Category"asp-action="Edit"asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a class="btn btn-danger" asp-controller="Category"asp-action="Delete"asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
-                                                    <a class="btn btn-success"asp-controller="Category"asp-action="Detail"asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>                                                     <a class="btn btn-success" asp-controller="Category" asp-action="Detail" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
 
 
                                                 </td>
                                             </tr>
                                             count++;
                                         }
-                                       
-                                    
-                                   
+
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -86,9 +105,11 @@
                         <div class="card-footer clearfix">
                             <ul class="pagination pagination-sm m-0 float-end">
                                 <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                               
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                               
+                               
+                  
                                 <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
                             </ul>
                         </div>
@@ -105,3 +126,11 @@
     </div>
     <!--end::App Content-->
 </main>
+<script>
+        const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+      myInput.focus()
+              })
+</script>

@@ -1,4 +1,4 @@
-﻿@model ProductCategoryVM
+﻿@model Pagination<ProductCategoryVM>
 @{
     ViewData["Title"] = "Index";
 }
@@ -61,8 +61,25 @@
                                         var count = 1;
                                     }
 
-                                    @foreach (var item in Model.Products)
+                                    @foreach (var item in Model.Datas.Products)
                                     {
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure deleted?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <tr class="align-middle">
                                             <td>@count</td>
                                             <td><img style="width:100px" src="~/@item.ProductPhoto" alt="Alternate Text" /></td>
@@ -74,7 +91,7 @@
                                             <td>@item.Description</td>                                        
                                             <td>@item.Count </td>
                                             <td>@item.DisCount</td>
-                                            <td>@Model.Categories.Where(c=>c.Id==item.CategoryId).FirstOrDefault().Name</td>
+                                            <td>@Model.Datas.Categories.Where(c=>c.Id==item.CategoryId).FirstOrDefault().Name</td>
                                             <td>@item.CreateTime</td>
                                             <td>@item.UpdateTime</td>
 
@@ -82,8 +99,9 @@
 
                                             <td>
                                                 <a class="btn btn-primary" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
-                                                <a class="btn btn-success" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>                                                 <a class="btn btn-success" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a>
 
 
                                             </td>
@@ -99,11 +117,15 @@
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
                             <ul class="pagination pagination-sm m-0 float-end">
-                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                
+                                <li class="page-item @(Model.HasPrevios?"":"disabled")"><a asp-action="Index"asp-route-page="@Model.CurrentPage-1" class="page-link">&laquo;</a></li>
+                                @for (int i = 1; i <= Model.TotalPage; i++)
+                                {
+                                    <li class="page-item @(Model.CurrentPage==@i ? "active":"")"><a class="page-link @(Model.CurrentPage==@i ? "paginate-active":"")" asp-action="Index" asp-route-page="@i">@i</a></li>
+                                }
+                               
+                                
+                                <li class="page-item @(Model.HasNext?"":"disabled")"><a asp-action="Index"asp-route-page="@Model.CurrentPage+1" class="page-link">&raquo;</a></li>
                             </ul>
                         </div>
                     </div>
@@ -118,3 +140,11 @@
     </div>
     <!--end::App Content-->
 </main>
+<script>
+        const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+      myInput.focus()
+              })
+</script>

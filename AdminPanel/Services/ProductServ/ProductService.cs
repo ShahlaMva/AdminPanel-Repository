@@ -26,14 +26,29 @@ namespace AdminPanel.Services.ProductServ
            return await _productRepository.GetAllAsync();
         }
 
-       public async Task<Product>GetProductByIdAsync(int id)
+       
+
+        public async Task<Product>GetProductByIdAsync(int id)
         {
           return  await _productRepository.GetByIdAsync(id);
+            
         }
+
+      
 
       public async Task UpdateProductAsync(Product product)
         {
             await _productRepository.UpdateAsync(product);
+        }
+
+      public async Task<IEnumerable<Product>> GetPaginateAsync(int skip, int take)
+        {
+            return await _productRepository.GetProductPaginationAsync(skip,take);
+        }
+
+        public async Task<int> ProductCountAsync()
+        {
+            return await _productRepository.GetProductCountAsync();
         }
     }
 }

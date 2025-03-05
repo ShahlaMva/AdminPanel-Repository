@@ -1,10 +1,12 @@
 ﻿using AdminPanel.Helpers.Extensions;
+using AdminPanel.Helpers.Generics;
 using AdminPanel.Models;
 using AdminPanel.Services.CategoryServ;
 using AdminPanel.Services.ProductServ;
 using AdminPanel.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace AdminPanel.Controllers
 {
@@ -21,15 +23,32 @@ namespace AdminPanel.Controllers
             _categoryService = categoryService;
             _webHostEnvironment = webHostEnvironment;
         }
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(int page = 1)
         {
 
-            var products = new ProductCategoryVM()
+
+            var products = await _productService.GetPaginateAsync(page, 4);
+            var categories = await _categoryService.GetAllCategoriesAsync();
+
+            ProductCategoryVM proVm = new ProductCategoryVM
             {
-                Products=await _productService.GetAllProductsAsync(),
-                Categories=await _categoryService.GetAllCategoriesAsync(),
+                Products=products,
+                Categories=categories
             };
-            return View(products);
+           int totalPage = await ProductsCount(4);
+            
+            Pagination<ProductCategoryVM> pagination = new(proVm, totalPage, page);
+                
+         
+            return View(pagination);
+        }
+        private async Task<int> ProductsCount(int take)
+        {
+            int proCount = await _productService.ProductCountAsync();
+
+            return (int)Math.Ceiling((decimal)proCount / take);
+
         }
 
         public async Task<IActionResult> Create()
@@ -131,5 +150,7 @@ namespace AdminPanel.Controllers
            
             
         }
+
+       
     }
 }

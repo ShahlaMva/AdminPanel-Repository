@@ -55,7 +55,7 @@ namespace AdminPanel.Controllers
             await _signInManager.SignInAsync(appUser, true);
 
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Dashboard");
         }
 
 

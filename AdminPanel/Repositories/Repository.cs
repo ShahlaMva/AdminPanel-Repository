@@ -12,7 +12,7 @@ namespace AdminPanel.Repositories
         public Repository(AppDbContext context)
         {
             _context=context;
-            _dbSet=_context.Set<T>();
+            _dbSet=context.Set<T>();
         }
        public async Task<IEnumerable<T>> GetAllAsync()
         {
